@@ -4,12 +4,12 @@ import { formatSize } from '../lib/utils'
 
 interface FileUploaderProps {
     onFileSelect?: (file: File | null) => void;
+    id?: string;
 }
 
-const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
+const FileUploader = ({ onFileSelect, id }: FileUploaderProps) => {
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const file = acceptedFiles[0] || null;
-
         onFileSelect?.(file);
     }, [onFileSelect]);
 
@@ -24,12 +24,10 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
 
     const file = acceptedFiles[0] || null;
 
-
-
     return (
         <div className="w-full gradient-border">
             <div {...getRootProps()}>
-                <input {...getInputProps()} />
+                <input {...getInputProps()} id={id} />
 
                 <div className="space-y-4 cursor-pointer">
                     {file ? (
